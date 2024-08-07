@@ -1,0 +1,39 @@
+def convert_to_pkr(amount, rate):
+    return amount * rate
+
+def main():
+    print("\nCurrency Converter to PKR")
+    print("-" * 40)
+    print("1:AED")
+    print("2:SAR")
+    print("3:USD")
+    print("4:YEN")
+    print("5:TAKA")
+    
+    currency_options = {1: 'AED', 2: 'SAR', 3: 'USD', 4: 'YEN', 5: 'TAKA'}
+
+    while True:
+        try:
+            choice = int(input("Choose currency (1-5) or 0 to quit: "))
+            if choice == 0:
+                print("Goodbye!")
+                break
+            if choice in currency_options:
+                currency = currency_options[choice]
+                while True:
+                    try:
+                        amount = float(input(f"Enter amount in {currency} (or 0 to stop): "))
+                        if amount == 0:
+                            break
+                        rate = float(input(f"Enter rate from {currency} to PKR: "))
+                        converted_amount = convert_to_pkr(amount, rate)
+                        print(f"{amount} {currency} = {converted_amount:.2f} PKR\n")
+                    except ValueError:
+                        continue
+            else:
+                print("Invalid choice, try again.")
+        except ValueError:
+            continue
+
+if __name__ == "__main__":
+    main()
